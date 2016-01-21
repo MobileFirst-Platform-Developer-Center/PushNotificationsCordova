@@ -92,7 +92,6 @@ limitations under the License.
         <mfp:sdkChecksum>2363003197</mfp:sdkChecksum>
         <mfp:appChecksum>0</mfp:appChecksum>
         <mfp:security>
-            <mfp:encryptWebResources enabled="false" />
             <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
         </mfp:security>
     </mfp:android>
@@ -100,7 +99,6 @@ limitations under the License.
         <mfp:sdkChecksum>0</mfp:sdkChecksum>
         <mfp:appChecksum>0</mfp:appChecksum>
         <mfp:security>
-            <mfp:encryptWebResources enabled="false" />
             <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
         </mfp:security>
     </mfp:ios>
@@ -108,7 +106,6 @@ limitations under the License.
         <mfp:sdkChecksum>0</mfp:sdkChecksum>
         <mfp:appChecksum>0</mfp:appChecksum>
         <mfp:security>
-            <mfp:encryptWebResources enabled="false" />
             <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
         </mfp:security>
     </mfp:windows>
