@@ -1,5 +1,5 @@
 /**
-* Copyright 2015 IBM Corp.
+* Copyright 2016 IBM Corp.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
+    
 var Messages = {
     // Add here your messages for the default language.
     // Generate a similar file with a language suffix containing the translated messages.
@@ -28,39 +28,100 @@ var wlInitOptions = {
 // Called automatically after MFP framework initialization by WL.Client.init(wlInitOptions).
 function wlCommonInit(){
 	// Common initialization code goes here
-    document.getElementById('app_version').textContent = WL.Client.getAppProperty("APP_VERSION");
-    document.getElementById('mobilefirst').setAttribute('style', 'display:block;');
-}
 
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
+    app.receivedEvent('deviceready');
+    MFPPush.initialize(function(successResponse) {
+            alert("Successfully intialized");
+            MFPPush.registerNotificationsCallback(notificationReceived);
+    }, function(failureResponse) {
+            alert("Failed to initialize");
+    });		
 
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-    },
 
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, 'app.receivedEvent(...);' must be explicitly called.
-    onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
+    function isPushSupported() {
+		MFPPush.isPushSupported(function(successResponse) {
+                alert("Push Supported: " + successResponse);
+        },function(failureResponse) {
+                alert("Failed to get push support status");
+        });
 
-    // Update the DOM on a received event.
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+        var notificationReceived = function(message) {
+            alert(JSON.stringify(message));
+        };
+        
+    function registerDevice() {
+    // Optional parameter, but must follow this format
+        var settings = {
+            ios: {
+                alert: true,
+                badge: true,
+                sound: true
+            }
+        };
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+        MFPPush.registerDevice(settings,function(successResponse) {
+                alert("Successfully registered");  
+                enableButtons();
+            },function(failureResponse) {
+                alert("Failed to register");
+            });
 
-        console.log('Received Event: ' + id);
     }
-};
 
-app.initialize();
+    function getTags() {
+        MFPPush.getTags(function(tags) {
+            alert(JSON.stringify(tags));
+        }, function(){
+            alert("Failed to get tags");
+        });
+    }
+
+    function getSubscriptions() {
+        MFPPush.getSubscriptions(function(subscriptions) {
+            alert(JSON.stringify(subscriptions));
+        }, function(){
+            alert("Failed to get subscriptions");
+        });
+    }
+
+    function subscribe() {
+        var tags = ['sample-tag1','sample-tag2']
+        MFPPush.subscribe(tags, function(tags) {
+            alert("Subscribed successfully");
+        },function(){
+            alert("Failed to subscribe");
+        });
+    }
+
+    function unsubscribe() {
+        var tags = ['sample-tag1','sample-tag2']
+        MFPPush.unsubscribe(tags, function(tags) {
+        alert("Unsubscribed successfully");
+        }, function(){
+            alert("Failed to unsubscribe");
+        });
+    }
+
+    function unregisterDevice() {
+        MFPPush.unregisterDevice(function(successResponse) {
+            alert("Unregistered successfully");
+            disableButtons();
+        }, function(){
+            alert("Failed to unregister");
+        });
+    }
+
+    function enableButtons() {
+        document.getElementById("subscribe").disabled = false;
+        document.getElementById("getsubscriptions").disabled = false;
+        document.getElementById("unsubscribe").disabled = false;
+        document.getElementById("unregister").disabled = false;
+    }
+  
+    function disableButtons(){
+        document.getElementById("subscribe").disabled = true;
+        document.getElementById("getsubscriptions").disabled = true;
+        document.getElementById("unsubscribe").disabled = true;
+        document.getElementById("unregister").disabled = true; 
+    }
+}
