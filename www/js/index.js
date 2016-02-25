@@ -27,17 +27,13 @@ var wlInitOptions = {
 
 // Called automatically after MFP framework initialization by WL.Client.init(wlInitOptions).
 function wlCommonInit(){
-    //MFP APIs should only be called within wlCommonInit() or after it has been called, to ensure that the APIs have loaded properly
-}
-
-document.addEventListener('deviceready', function() {
     MFPPush.initialize(function(successResponse) {
          alert("Successfully intialized");
          MFPPush.registerNotificationsCallback(notificationReceived);
     }, function(failureResponse) {
          alert("Failed to initialize");
     });
-}, false);
+}
 
 function isPushSupported() {
     MFPPush.isPushSupported(function(successResponse) {
@@ -47,12 +43,7 @@ function isPushSupported() {
     });
 }
 
-var notificationReceived = function(message) {
-    alert(JSON.stringify(message));
-};
-
 function registerDevice() {
-
     MFPPush.registerDevice(function(successResponse) {
         alert("Successfully registered");
         enableButtons();
@@ -62,59 +53,71 @@ function registerDevice() {
 }
 
 function getTags() {
-    MFPPush.getTags(function(tags) {
-                    alert(JSON.stringify(tags));
-                    },
-                    function(){
-                    alert("Failed to get tags");
-                    }
-                    );
+    MFPPush.getTags(
+        function(tags) {
+            alert(JSON.stringify(tags));
+        },
+        function(){
+            alert("Failed to get tags");
+        }
+    );
 }
 
 function getSubscriptions() {
-    MFPPush.getSubscriptions(function(subscriptions) {
-                             alert(JSON.stringify(subscriptions));
-                             },
-                             function(){
-                             alert("Failed to get subscriptions");
-                             }
-                             );
+    MFPPush.getSubscriptions (
+        function(subscriptions) {
+            alert(JSON.stringify(subscriptions));
+        },
+        function(){
+            alert("Failed to get subscriptions");
+        }
+    );
 }
 
 function subscribe() {
-    var tags = ['sample-tag1','sample-tag2']
-    MFPPush.subscribe(tags,
-                      function(tags) {
-                      alert("Subscribed successfully");
-                      },
-                      function(){
-                      alert("Failed to subscribe");
-                      }
-                      );
+    var tags = ['sample-tag1','sample-tag2'];
+    
+    MFPPush.subscribe (
+        tags,
+        function(tags) {
+            alert("Subscribed successfully");
+        },
+        function() {
+            alert("Failed to subscribe");
+        }
+     );
 }
 
 function unsubscribe() {
-    var tags = ['sample-tag1','sample-tag2']
-    MFPPush.unsubscribe(tags,
-                        function(tags) {
-                        alert("Unsubscribed successfully");
-                        },
-                        function(){
-                        alert("Failed to unsubscribe");
-                        }
-                        );
+    var tags = ['sample-tag1','sample-tag2'];
+    
+    MFPPush.unsubscribe (
+        tags,
+        function(tags) {
+            alert("Unsubscribed successfully");
+        },
+        function(){
+            alert("Failed to unsubscribe");
+        }
+    );
 }
 
 function unregisterDevice() {
-    MFPPush.unregisterDevice(function(successResponse) {
-                             alert("Unregistered successfully");
-                             disableButtons();
-                             },
-                             function(){
-                             alert("Failed to unregister");
-                             }
-                             );
+    MFPPush.unregisterDevice(
+        function(successResponse) {
+            alert("Unregistered successfully");
+            disableButtons();
+        },
+        function() {
+            alert("Failed to unregister");
+        }
+    );
 }
+
+var notificationReceived = function(message) {
+    alert(JSON.stringify(message));
+};
+
 
 function enableButtons() {
     document.getElementById("subscribe").disabled = false;

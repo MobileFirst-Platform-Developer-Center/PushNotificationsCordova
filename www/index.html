@@ -16,39 +16,31 @@ limitations under the License.
 -->
 
 <html>
-  <head>
-  	<!--
-	  Customize this policy to fit your own app's needs. For more guidance, see:
-	      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-	  Some notes:
-	      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-	      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-	      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-	          * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">  
-    <meta charset="utf-8" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <head>
+        <meta charset="utf-8" />
+        <title>Push Notifications</title>
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <!-- load script with wlCommonInit defined before loading cordova.js -->
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+    </head>
 
-	<!-- Uncomment the following line if you are migrating an app from Legacy to MFP Cordova -->
-    <!--  <link rel="stylesheet" type="text/css" href="plugins/cordova-plugin-mfp/worklight/worklight.css" > -->
-    <!-- load script with wlCommonInit defined before loading cordova.js -->
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
-
-    <title>Hello World</title>
-  </head>
-  <body>
-      <center><h1>Push Notifications</h1></center>
-      <center><button id="isPushSupported">Is Push Supported</button></br></center>
-      <center><button id="registerDevice">Register Device</button></br></center>
-      <center><button id="getTags">Get Tags</button></br></center>
-      <center><button id="subscribe" disabled>Subscribe</button></br></center>
-      <center><button id="getsubscriptions" disabled>Get Subscriptions</button></br></center>
-      <center><button id="unsubscribe" disabled>Unsubscribe</button></br></center>
-      <center><button id="unregister" disabled>Unregister Device</button></br></center>
-  </body>
+    <body>
+        <div id="header">
+            <h1>Push Notifications</h1>
+        </div>			
+        <div id="wrapper">
+            <button id="isPushSupported">Is Push Supported</button>
+            <button id="registerDevice">Register Device</button>
+            <button id="getTags">Get Tags</button>
+            <button id="subscribe" disabled>Subscribe</button>
+            <button id="getsubscriptions" disabled>Get Subscriptions</button>    
+            <button id="unsubscribe" disabled>Unsubscribe</button>    
+            <button id="unregister" disabled>Unregister Device</button>
+        </div>	
+    </body>
 </html>
-
