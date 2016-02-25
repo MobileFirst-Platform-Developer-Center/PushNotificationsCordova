@@ -16,34 +16,39 @@ limitations under the License.
 -->
 
 <html>
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
+  <head>
+  	<!--
+	  Customize this policy to fit your own app's needs. For more guidance, see:
+	      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+	  Some notes:
+	      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+	      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+	      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+	          * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript" src="cordova.js"></script>
-        <title>Push Notifications</title>
-    </head>
-    <body>
-        <center><h1>Push Notifications</h1></center>
-        <center><button onClick="isPushSupported()">Is Push Supported</button></br></center>
-        <center><button onClick="registerDevice()">Register Device</button></br></center>
-        <center><button onClick="getTags()" id="gettags">Get Tags</button></br></center>
-        <center><button onClick="subscribe()"  disabled id="subscribe">Subscribe</button></br></center>
-        <center><button onClick="getSubscriptions()" disabled id="getsubscriptions">Get Subscriptions</button></br></center>
-        <center><button onClick="unsubscribe()" disabled id="unsubscribe">Unsubscribe</button></br></center>
-        <center><button onClick="unregisterDevice()" disabled id="unregister">Unregister Device</button></br></center>
-    </body>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">  
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+	<!-- Uncomment the following line if you are migrating an app from Legacy to MFP Cordova -->
+    <!--  <link rel="stylesheet" type="text/css" href="plugins/cordova-plugin-mfp/worklight/worklight.css" > -->
+    <!-- load script with wlCommonInit defined before loading cordova.js -->
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+
+    <title>Hello World</title>
+  </head>
+  <body>
+      <center><h1>Push Notifications</h1></center>
+      <center><button id="isPushSupported">Is Push Supported</button></br></center>
+      <center><button id="registerDevice">Register Device</button></br></center>
+      <center><button id="getTags">Get Tags</button></br></center>
+      <center><button id="subscribe" disabled>Subscribe</button></br></center>
+      <center><button id="getsubscriptions" disabled>Get Subscriptions</button></br></center>
+      <center><button id="unsubscribe" disabled>Unsubscribe</button></br></center>
+      <center><button id="unregister" disabled>Unregister Device</button></br></center>
+  </body>
 </html>
+
