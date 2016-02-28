@@ -9,8 +9,10 @@ https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/notificatio
 ### Usage
 
 1. From a command-line window, navigate to the project's root folder and run the command: `mfpdev app register`.
-2. In the MobileFirst console, under **Applications** → **PushNotificationsCordova** → **Security** → **Map scope elements to security checks.**, add a mapping for `push.mobileclient`.
-3. Once the application is configured, run the command: `cordova run`.
+2. In the MobileFirst console, under **Applications** → **PushNotificationsCordova** → **Security** → **Map scope elements to security checks**, add a mapping for `push.mobileclient`.
+3. Add a platform using the `cordova platform add` command.
+4. Follow required set-up steps mentioned in this tutorial.
+5. Run the application by running the `cordova run` command.
 
 Notes:
 
@@ -23,7 +25,7 @@ Notes:
 IBM MobileFirst Platform Foundation 8.0
 
 ### License
-Copyright 2015 IBM Corp.
+Copyright 2016 IBM Corp.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
