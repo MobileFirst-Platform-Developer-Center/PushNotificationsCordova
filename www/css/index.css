@@ -13,13 +13,11 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 body {
-	-webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
-	-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
 	margin: 0;
 	font-family: sans-serif;
 	background-color: #ccc;
+	text-align: center;
 }
 
 #header {
@@ -32,24 +30,30 @@ body {
 	border-bottom: 1px solid white;
 	position: fixed;
 	width: 100%;
-	padding-top: 5px;
-}
-
-#wrapper {
-	padding-top: 38px;
-	
 }
 
 h1 {
 	margin: 0;
 	font-size: 18px;
+	font-family: inherit;
 }
 
-button {
-	display: block;
-	width: 44%;
+.wrapper {
+	width: 90%;
+	margin: auto;
+	padding-top: 38px;
+	padding-bottom: 30px;
+}
+.appButtons {
+	width: 60%;
 	height: 3em;
 	font-size: 0.8em;
-	margin: 15px auto 0 auto;
-	background-color: #eee;
+	margin: 10px auto 0 auto;
+	background-color: #551A8B;
+	color: white;
+	position: center;
+}
+
+button[disabled=disabled], button:disabled {
+    background-color: #71637D;
 }
