@@ -11,7 +11,7 @@ https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/notificatio
 1. From a command-line window, navigate to the project's root folder and run the command: `mfpdev app register`.
 2. In the MobileFirst console, under **Applications** → **PushNotificationsCordova** → **Security** → **Map scope elements to security checks**, add a mapping for `push.mobileclient`.
 3. Add a platform using the `cordova platform add` command.
-4. Follow required set-up steps mentioned in this tutorial.
+4. Via the MobileFirst Operations Console, setup the MobileFirst Server with either GCM details or APNS certificate, and add tags.
 5. Run the application by running the `cordova run` command.
 
 Notes:
