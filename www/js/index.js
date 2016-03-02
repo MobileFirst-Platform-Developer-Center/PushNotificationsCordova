@@ -26,6 +26,9 @@ var wlInitOptions = {
     // For initialization options please refer to IBM MobileFirst Platform Foundation Knowledge Center.
 };
 
+// Default tags if "Get Tags" is not clicked first
+var tags = ['sample-tag1','sample-tag2'];
+
 // Called automatically after MFP framework initialization by WL.Client.init(wlInitOptions).
 function wlCommonInit(){
     //MFP APIs should only be called within wlCommonInit() or after it has been called, to ensure that the APIs have loaded properly
@@ -68,7 +71,8 @@ function registerDevice() {
 
 function getTags() {
     MFPPush.getTags(
-       function(tags) {
+       function(newTags) {
+            tags = newTags;
             alert(JSON.stringify(tags));
        },
        function(){
@@ -89,7 +93,7 @@ function getSubscriptions() {
 }
 
 function subscribe() {
-    var tags = ['sample-tag1','sample-tag2']
+    //tags = ['sample-tag1','sample-tag2'];
 
     MFPPush.subscribe(
         tags,
@@ -102,7 +106,7 @@ function subscribe() {
 }
 
 function unsubscribe() {
-    var tags = ['sample-tag1','sample-tag2']
+    //tags = ['sample-tag1','sample-tag2'];
 
     MFPPush.unsubscribe(
         tags,
@@ -128,7 +132,7 @@ function unregisterDevice() {
 }
 
 var notificationReceived = function(message) {
-    obj = JSON.parse(message.payload)
+    obj = JSON.parse(message.payload);
     alert("Alert: " + message.alert +
             "\nID: " + obj.nid +
             "\nPayload: " + message.payload );
