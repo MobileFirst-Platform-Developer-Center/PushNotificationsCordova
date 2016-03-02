@@ -49,11 +49,5 @@ h1 {
 	height: 3em;
 	font-size: 0.8em;
 	margin: 10px auto 0 auto;
-	background-color: #551A8B;
-	color: white;
 	position: center;
-}
-
-button[disabled=disabled], button:disabled {
-    background-color: #71637D;
 }
