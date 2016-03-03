@@ -11,7 +11,7 @@
     <plugin name="cordova-plugin-mfp" spec="~8.0" />
     <plugin name="cordova-plugin-splashscreen" spec="~3" />
     <plugin name="cordova-plugin-whitelist" spec="~1" />
-    <plugin name="cordova-plugin-mfp-push" spec="~8" />
+    <plugin name="cordova-plugin-mfp-push" spec="~8.0" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
