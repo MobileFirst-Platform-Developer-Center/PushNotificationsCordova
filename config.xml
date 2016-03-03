@@ -11,7 +11,7 @@
     <plugin name="cordova-plugin-mfp" spec="~8.0" />
     <plugin name="cordova-plugin-splashscreen" spec="~3" />
     <plugin name="cordova-plugin-whitelist" spec="~1" />
-    <plugin name="cordova-plugin-mfp-push" spec="~1" />
+    <plugin name="cordova-plugin-mfp-push" spec="~8" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -74,7 +74,7 @@
         <splash height="1242" src="res/screen/ios/Default-736h-Landscape~iphone.png" width="2208" />
     </platform>
     <mfp:android>
-        <mfp:sdkChecksum>741168166</mfp:sdkChecksum>
+        <mfp:sdkChecksum>3810673034</mfp:sdkChecksum>
         <mfp:appChecksum>0</mfp:appChecksum>
         <mfp:security>
             <mfp:testWebResourcesChecksum enabled="false" ignoreFileExtensions="png, jpg, jpeg, gif, mp4, mp3" />
@@ -112,7 +112,7 @@
             </mfp:security>
         </mfp:windows10>
     </mfp:windows>
-    <mfp:platformVersion>8.0.0.00-20160224-2339</mfp:platformVersion>
+    <mfp:platformVersion>8.0.0.00-20160301-1922</mfp:platformVersion>
     <mfp:clientCustomInit enabled="false" />
     <mfp:server runtime="mfp" url="http://localhost:9080" />
     <mfp:directUpdateAuthenticityPublicKey />
