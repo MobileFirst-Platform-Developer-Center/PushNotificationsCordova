@@ -37,7 +37,7 @@ function wlCommonInit(){
         WL.Logger.debug("Successfully intialized");
         MFPPush.registerNotificationsCallback(notificationReceived);
     }, function(failureResponse) {
-        WL.Logger.debug("Failed to initialize");
+        alert("Failed to initialize");
     });
 
     //add event listeners for click on buttons
