@@ -34,10 +34,10 @@ function wlCommonInit(){
     //MFP APIs should only be called within wlCommonInit() or after it has been called, to ensure that the APIs have loaded properly
     MFPPush.initialize(
        function(successResponse) {
-        alert("Successfully intialized");
+        WL.Logger.debug("Successfully intialized");
         MFPPush.registerNotificationsCallback(notificationReceived);
     }, function(failureResponse) {
-        alert("Failed to initialize");
+        WL.Logger.debug("Failed to initialize");
     });
 
     //add event listeners for click on buttons
