@@ -30,6 +30,7 @@ body {
 	border-bottom: 1px solid white;
 	position: fixed;
 	width: 100%;
+	padding-top: 5px;
 }
 
 h1 {
