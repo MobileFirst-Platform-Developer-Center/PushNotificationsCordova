@@ -11,8 +11,9 @@ https://mobilefirstplatform.ibmcloud.com/tutorials/en/foundation/8.0/notificatio
 1. From a **Command-line**, navigate to the project's root folder.
 2. Add a platform using the `cordova platform add` command.
 3. Register the application by running the command: `mfpdev app register`.
-4. Via the MobileFirst Operations Console, setup the MobileFirst Server with either GCM details or APNS certificate, and add tags.
-5. Run the application by running the `cordova run` command.
+4. Add new scope-mapping element `push.mobileclient`
+5. Via the MobileFirst Operations Console, setup the MobileFirst Server with either GCM details or APNS certificate, and add tags.
+6. Run the application by running the `cordova run` command.
 
 Notes:
 
