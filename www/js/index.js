@@ -132,10 +132,7 @@ function unregisterDevice() {
 }
 
 var notificationReceived = function(message) {
-    obj = JSON.parse(message.payload);
-    alert("Alert: " + message.alert +
-            "\nID: " + obj.nid +
-            "\nPayload: " + message.payload );
+    alert (JSON.stringify(message));
 };
 
 function enableButtons() {
