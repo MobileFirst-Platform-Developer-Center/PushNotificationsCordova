@@ -61,9 +61,10 @@ function isPushSupported() {
 
 function registerDevice() {
     MFPPush.registerDevice(
-       function(successResponse) {
-        alert("Successfully registered");
-        enableButtons();
+        {"phoneNumber":""}, // workaround due to a defect in th product. an empty phoneNumber property must be passed at this time.
+        function(successResponse) {
+            alert("Successfully registered");
+            enableButtons();
     }, function(failureResponse) {
         alert("Failed to register");
     });
