@@ -31,7 +31,9 @@ var tags = ['sample-tag1','sample-tag2'];
 
 // Called automatically after MFP framework initialization by WL.Client.init(wlInitOptions).
 function wlCommonInit(){
+    var userLoginChallengeHandler = UserLoginChallengeHandler();
     //MFP APIs should only be called within wlCommonInit() or after it has been called, to ensure that the APIs have loaded properly
+    
     MFPPush.initialize(
        function(successResponse) {
         WL.Logger.debug("Successfully intialized");
@@ -39,6 +41,11 @@ function wlCommonInit(){
     }, function(failureResponse) {
         alert("Failed to initialize");
     });
+
+/*
+* NOTE: in the code below MFPPush API calls are wrapped with "WLAuthorizationManager.obtainAccessToken("push.mobileclient")".
+* This is due to a defect in the current release of the product. 
+*/
 
     //add event listeners for click on buttons
     document.getElementById("isPushSupported").addEventListener("click", isPushSupported);
@@ -51,84 +58,106 @@ function wlCommonInit(){
 }
 
 function isPushSupported() {
-    MFPPush.isPushSupported(
-       function(successResponse) {
-        alert("Push Supported: " + successResponse);
-    }, function(failureResponse) {
-        alert("Failed to get push support status");
-    });
+    WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
+        MFPPush.isPushSupported(
+        function(successResponse) {
+            alert("Push Supported: " + successResponse);
+        }, function(failureResponse) {
+            alert("Failed to get push support status");
+        })
+    );
 }
 
 function registerDevice() {
-    MFPPush.registerDevice(
-        {"phoneNumber":""}, // workaround due to a defect in th product. an empty phoneNumber property must be passed at this time.
-        function(successResponse) {
-            alert("Successfully registered");
-            enableButtons();
-    }, function(failureResponse) {
-        alert("Failed to register");
-    });
+    WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
+        MFPPush.registerDevice(
+            {"phoneNumber":""}, // workaround due to a defect in the current release of the product. An empty "phoneNumber" property must be passed at this time.
+            function(successResponse) {
+                alert("Successfully registered");
+                enableButtons();    
+            }, 
+            function(failureResponse) {
+                alert("Failed to register");
+                console.log("Failed to register device:" + JSON.stringify(failureResponse));
+            }
+        )
+    );
 }
 
 function getTags() {
-    MFPPush.getTags(
-       function(newTags) {
-            tags = newTags;
-            alert(JSON.stringify(tags));
-       },
-       function(){
-            alert("Failed to get tags");
-       }
+    WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
+        MFPPush.getTags(
+           function(newTags) {
+                tags = newTags;
+                alert(JSON.stringify(tags));
+           },
+           function(failureResponse){
+                alert("Failed to get tags");
+                console.log("Failed to get tags:" + JSON.stringify(failureResponse));
+           }
+        )
     );
 }
 
 function getSubscriptions() {
-    MFPPush.getSubscriptions(
-        function(subscriptions) {
-            alert(JSON.stringify(subscriptions));
-         },
-        function(){
-            alert("Failed to get subscriptions");
-        }
+    WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
+        MFPPush.getSubscriptions(
+            function(subscriptions) {
+                alert(JSON.stringify(subscriptions));
+             },
+            function(failureResponse){
+                alert("Failed to get subscriptions");
+                console.log("Failed to get subscriptions:" + JSON.stringify(failureResponse));
+            }
+        )
     );
 }
 
 function subscribe() {
     //tags = ['sample-tag1','sample-tag2'];
-
-    MFPPush.subscribe(
-        tags,
-        function(tags) {
-            alert("Subscribed successfully");
-        },function(){
-            alert("Failed to subscribe");
-        }
+    
+    WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
+        MFPPush.subscribe(
+            tags,
+            function(tags) {
+                alert("Subscribed successfully");
+            },function(failureResponse){
+                alert("Failed to subscribe");
+                console.log("Failed to subscribe:" + JSON.stringify(failureResponse));
+            }
+        )
     );
 }
 
 function unsubscribe() {
     //tags = ['sample-tag1','sample-tag2'];
 
-    MFPPush.unsubscribe(
-        tags,
-        function(tags) {
-            alert("Unsubscribed successfully");
-        },
-        function(){
-            alert("Failed to unsubscribe");
-        }
+    WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
+        MFPPush.unsubscribe(
+            tags,
+            function(tags) {
+                alert("Unsubscribed successfully");
+            },
+            function(failureResponse){
+                alert("Failed to unsubscribe");
+                console.log("Failed to unsubscribe:" + JSON.stringify(failureResponse));
+            }
+        )
     );
 }
 
 function unregisterDevice() {
-    MFPPush.unregisterDevice(
-      function(successResponse) {
-           alert("Unregistered successfully");
-           disableButtons();
-      },
-      function(){
-           alert("Failed to unregister");
-      }
+    WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
+        MFPPush.unregisterDevice(
+          function(successResponse) {
+               alert("Unregistered successfully");
+               disableButtons();
+          },
+          function(failureResponse){
+               alert("Failed to unregister");
+               console.log("Failed to unregister:" + JSON.stringify(failureResponse));
+          }
+        )
     );
 }
 
@@ -148,4 +177,15 @@ function disableButtons(){
     document.getElementById("getsubscriptions").disabled = true;
     document.getElementById("unsubscribe").disabled = true;
     document.getElementById("unregister").disabled = true;
+}
+
+function showLoginDiv() {
+    document.getElementById('protectedDiv').style.display = 'none';
+    document.getElementById('statusMsg').innerHTML = "";
+    document.getElementById('loginDiv').style.display = 'block';
+}
+
+function showProtectedDiv() {
+    document.getElementById('loginDiv').style.display = 'none';
+    document.getElementById('protectedDiv').style.display = 'block';
 }

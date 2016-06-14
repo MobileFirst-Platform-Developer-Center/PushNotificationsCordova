@@ -16,29 +16,55 @@ limitations under the License.
 -->
 
 <html>
-  <head>
+
+<head>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 
-      <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/index.css">
     <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/UserLoginChallengeHandler.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-  </head>
-  <body style="display: none;">
-      <div id="header">
-          <h1>Push Notifications</h1>
-      </div>
-      <div class="wrapper">
-          <button id="isPushSupported" class="appButtons">Is Push Supported</button></br>
-          <button id="registerDevice" class="appButtons">Register Device</button></br>
-          <button id="getTags" class="appButtons">Get Tags</button></br>
-          <button id="subscribe" class="appButtons" disabled>Subscribe To Tags</button></br>
-          <button id="getsubscriptions" class="appButtons" disabled>Get Subscriptions</button></br>
-          <button id="unsubscribe" class="appButtons" disabled>Unsubscribe From Tags</button></br>
-          <button id="unregister" class="appButtons" disabled>Unregister Device</button></br>
-      </div>
-  </body>
+</head>
+
+<body style="display: none;">
+    <div id="header">
+        <h1>Push Notifications</h1>
+    </div>
+    <div class="wrapper">
+        <div id="loginDiv" style="display: none;">
+            <br/>
+            <input type="text" autocapitalize="off" autocorrect="off" placeholder="Enter Username" id="username" />
+            <br />
+            <input type="password" placeholder="Enter Password" id="password" />
+            <p class="label" id="statusMsg"></p>
+            <button id="login">Login</button>
+            
+        </div>
+
+        <div id="protectedDiv">
+            <button id="isPushSupported" class="appButtons">Is Push Supported</button>
+            </br>
+            <button id="registerDevice" class="appButtons">Register Device</button>
+            </br>
+            <button id="getTags" class="appButtons">Get Tags</button>
+            </br>
+            <button id="subscribe" class="appButtons" disabled>Subscribe To Tags</button>
+            </br>
+            <button id="getsubscriptions" class="appButtons" disabled>Get Subscriptions</button>
+            </br>
+            <button id="unsubscribe" class="appButtons" disabled>Unsubscribe From Tags</button>
+            </br>
+            <button id="unregister" class="appButtons" disabled>Unregister Device</button>
+            </br>
+        </div>
+        <div id="blockedDiv" style="display: none;">
+            <p class="label" id="blockedMsg"></p>
+        </div>
+    </div>
+</body>
+
 </html>
