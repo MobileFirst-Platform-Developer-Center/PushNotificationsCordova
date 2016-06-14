@@ -42,11 +42,6 @@ function wlCommonInit(){
         alert("Failed to initialize");
     });
 
-/*
-* NOTE: in the code below MFPPush API calls are wrapped with "WLAuthorizationManager.obtainAccessToken("push.mobileclient")".
-* This is due to a defect in the current release of the product. 
-*/
-
     //add event listeners for click on buttons
     document.getElementById("isPushSupported").addEventListener("click", isPushSupported);
     document.getElementById("registerDevice").addEventListener("click", registerDevice);
@@ -58,15 +53,19 @@ function wlCommonInit(){
 }
 
 function isPushSupported() {
-    WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
-        MFPPush.isPushSupported(
+    MFPPush.isPushSupported(
         function(successResponse) {
             alert("Push Supported: " + successResponse);
         }, function(failureResponse) {
             alert("Failed to get push support status");
-        })
+        }
     );
 }
+
+/*
+* NOTE: in the code below MFPPush API calls are wrapped with "WLAuthorizationManager.obtainAccessToken("push.mobileclient")".
+* This is due to a defect in the current release of the product. 
+*/
 
 function registerDevice() {
     WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
@@ -149,14 +148,14 @@ function unsubscribe() {
 function unregisterDevice() {
     WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
         MFPPush.unregisterDevice(
-          function(successResponse) {
+            function(successResponse) {
                alert("Unregistered successfully");
                disableButtons();
-          },
-          function(failureResponse){
+           },
+           function(failureResponse){
                alert("Failed to unregister");
                console.log("Failed to unregister:" + JSON.stringify(failureResponse));
-          }
+           }
         )
     );
 }
