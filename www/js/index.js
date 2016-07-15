@@ -39,7 +39,7 @@ function wlCommonInit(){
         WL.Logger.debug("Successfully intialized");
         MFPPush.registerNotificationsCallback(notificationReceived);
     }, function(failureResponse) {
-        alert("Failed to initialize");
+        navigator.notification.alert("Failed to initialize");
     });
 
     //add event listeners for click on buttons
@@ -55,9 +55,9 @@ function wlCommonInit(){
 function isPushSupported() {
     MFPPush.isPushSupported(
         function(successResponse) {
-            alert("Push Supported: " + successResponse);
+            navigator.notification.alert("Push Supported: " + successResponse);
         }, function(failureResponse) {
-            alert("Failed to get push support status");
+            navigator.notification.alert("Failed to get push support status");
         }
     );
 }
@@ -72,11 +72,11 @@ function registerDevice() {
         MFPPush.registerDevice(
             {"phoneNumber":""}, // workaround due to a defect in the current release of the product. An empty "phoneNumber" property must be passed at this time.
             function(successResponse) {
-                alert("Successfully registered");
+                navigator.notification.alert("Successfully registered");
                 enableButtons();    
             }, 
             function(failureResponse) {
-                alert("Failed to register");
+                navigator.notification.alert("Failed to register");
                 console.log("Failed to register device:" + JSON.stringify(failureResponse));
             }
         )
@@ -88,10 +88,10 @@ function getTags() {
         MFPPush.getTags(
            function(newTags) {
                 tags = newTags;
-                alert(JSON.stringify(tags));
+                navigator.notification.alert(JSON.stringify(tags));
            },
            function(failureResponse){
-                alert("Failed to get tags");
+                navigator.notification.alert("Failed to get tags");
                 console.log("Failed to get tags:" + JSON.stringify(failureResponse));
            }
         )
@@ -102,10 +102,10 @@ function getSubscriptions() {
     WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
         MFPPush.getSubscriptions(
             function(subscriptions) {
-                alert(JSON.stringify(subscriptions));
+                navigator.notification.alert(JSON.stringify(subscriptions));
              },
             function(failureResponse){
-                alert("Failed to get subscriptions");
+                navigator.notification.alert("Failed to get subscriptions");
                 console.log("Failed to get subscriptions:" + JSON.stringify(failureResponse));
             }
         )
@@ -119,9 +119,9 @@ function subscribe() {
         MFPPush.subscribe(
             tags,
             function(tags) {
-                alert("Subscribed successfully");
+                navigator.notification.alert("Subscribed successfully");
             },function(failureResponse){
-                alert("Failed to subscribe");
+                navigator.notification.alert("Failed to subscribe");
                 console.log("Failed to subscribe:" + JSON.stringify(failureResponse));
             }
         )
@@ -135,10 +135,10 @@ function unsubscribe() {
         MFPPush.unsubscribe(
             tags,
             function(tags) {
-                alert("Unsubscribed successfully");
+                navigator.notification.alert("Unsubscribed successfully");
             },
             function(failureResponse){
-                alert("Failed to unsubscribe");
+                navigator.notification.alert("Failed to unsubscribe");
                 console.log("Failed to unsubscribe:" + JSON.stringify(failureResponse));
             }
         )
@@ -149,11 +149,11 @@ function unregisterDevice() {
     WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
         MFPPush.unregisterDevice(
             function(successResponse) {
-               alert("Unregistered successfully");
+               navigator.notification.alert("Unregistered successfully");
                disableButtons();
            },
            function(failureResponse){
-               alert("Failed to unregister");
+               navigator.notification.alert("Failed to unregister");
                console.log("Failed to unregister:" + JSON.stringify(failureResponse));
            }
         )
@@ -161,7 +161,7 @@ function unregisterDevice() {
 }
 
 var notificationReceived = function(message) {
-    alert (JSON.stringify(message));
+    navigator.notification.alert(JSON.stringify(message));
 };
 
 function enableButtons() {

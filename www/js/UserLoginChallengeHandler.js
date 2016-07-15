@@ -50,9 +50,9 @@ var UserLoginChallengeHandler = function() {
                 document.getElementById("blockedDiv").style.display = "block";
                 document.getElementById("blockedMsg").innerHTML = "Your account is blocked. Try again later.";
             }
-            alert(error.failure);
+            navigator.notification.alert(error.failure);
         } else {
-            alert("Failed to login.");
+            navigator.notification.alert("Failed to login.");
         }
     };
 
@@ -60,7 +60,7 @@ var UserLoginChallengeHandler = function() {
         var username = document.getElementById('username').value;
         var password = document.getElementById('password').value;
         if (username === "" || password === ""){
-            alert("Username and password are required");
+            navigator.notification.alert("Username and password are required");
             return;
         }
         if (isChallenged){
