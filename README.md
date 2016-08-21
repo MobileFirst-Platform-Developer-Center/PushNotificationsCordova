@@ -19,8 +19,9 @@ Notes:
 
 * iOS: Must be tested on physical devices.
 * iOS: The BundleID must relate to an AppID configured with push notifications.
-* Android: The certificate must be uploaded via the MobileFirst Operations Console.
+* iOS: The certificate must be uploaded via the MobileFirst Operations Console.
 * Android: Emulator must have Google APIs to test push notifications.
+* Android: The GCM Key and SenderId values must be configured via the MobileFirst Operations Console.
 
 ### Supported Levels
 IBM MobileFirst Platform Foundation 8.0
