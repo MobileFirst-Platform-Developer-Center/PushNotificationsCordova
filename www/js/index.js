@@ -70,7 +70,7 @@ function isPushSupported() {
 function registerDevice() {
     WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
         MFPPush.registerDevice(
-            {"phoneNumber":""}, // workaround due to a defect in the current release of the product. An empty "phoneNumber" property must be passed at this time.
+            null,
             function(successResponse) {
                 navigator.notification.alert("Successfully registered");
                 enableButtons();    
