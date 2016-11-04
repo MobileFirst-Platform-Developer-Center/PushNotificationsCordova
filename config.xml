@@ -117,4 +117,6 @@
     <mfp:server runtime="mfp" url="http://localhost:9080" />
     <mfp:directUpdateAuthenticityPublicKey />
     <mfp:languagePreferences>en</mfp:languagePreferences>
+    <engine name="android" spec="~5.1.1" />
+    <engine name="ios" spec="~4.3.0" />
 </widget>
