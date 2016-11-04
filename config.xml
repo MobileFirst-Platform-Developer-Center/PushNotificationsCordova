@@ -8,10 +8,6 @@
         IBM MobileFirst Platform Foundation team
     </author>
     <content src="index.html" />
-    <plugin name="cordova-plugin-mfp" spec="~8.0" />
-    <plugin name="cordova-plugin-splashscreen" spec="~3" />
-    <plugin name="cordova-plugin-whitelist" spec="~1" />
-    <plugin name="cordova-plugin-mfp-push" spec="~8.0" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -112,9 +108,15 @@
             </mfp:security>
         </mfp:windows10>
     </mfp:windows>
-    <mfp:platformVersion>8.0.0.00-20160314-0859</mfp:platformVersion>
+    <mfp:platformVersion>8.0.0.00-20161014-1546</mfp:platformVersion>
     <mfp:clientCustomInit enabled="false" />
     <mfp:server runtime="mfp" url="http://localhost:9080" />
     <mfp:directUpdateAuthenticityPublicKey />
     <mfp:languagePreferences>en</mfp:languagePreferences>
+    <engine name="android" spec="~5.1.1" />
+    <engine name="ios" spec="~4.3.0" />
+    <plugin name="cordova-plugin-splashscreen" spec="~3" />
+    <plugin name="cordova-plugin-whitelist" spec="~1" />
+    <plugin name="cordova-plugin-mfp" spec="~8.0" />
+    <plugin name="cordova-plugin-mfp-push" spec="~8.0" />
 </widget>
