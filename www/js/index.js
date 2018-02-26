@@ -33,7 +33,7 @@ var tags = ['sample-tag1','sample-tag2'];
 function wlCommonInit(){
     var userLoginChallengeHandler = UserLoginChallengeHandler();
     //MFP APIs should only be called within wlCommonInit() or after it has been called, to ensure that the APIs have loaded properly
-    
+
     MFPPush.initialize(
        function(successResponse) {
         WL.Logger.debug("Successfully intialized");
@@ -64,22 +64,24 @@ function isPushSupported() {
 
 /*
 * NOTE: in the code below MFPPush API calls are wrapped with "WLAuthorizationManager.obtainAccessToken("push.mobileclient")".
-* This is due to a defect in the current release of the product. 
+* This is due to a defect in the current release of the product.
 */
 
 function registerDevice() {
     WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
-        MFPPush.registerDevice(
-            null,
-            function(successResponse) {
-                navigator.notification.alert("Successfully registered");
-                enableButtons();    
-            }, 
-            function(failureResponse) {
-                navigator.notification.alert("Failed to register");
-                console.log("Failed to register device:" + JSON.stringify(failureResponse));
-            }
-        )
+        function(accessToken){
+            MFPPush.registerDevice(
+                null,
+                function(successResponse) {
+                  navigator.notification.alert("Successfully registered");
+                  enableButtons();
+                },
+                function(failureResponse) {
+                  navigator.notification.alert("Failed to register");
+                  console.log("Failed to register device:" + JSON.stringify(failureResponse));
+                }
+            )
+        }
     );
 }
 
@@ -114,7 +116,7 @@ function getSubscriptions() {
 
 function subscribe() {
     //tags = ['sample-tag1','sample-tag2'];
-    
+
     WLAuthorizationManager.obtainAccessToken("push.mobileclient").then(
         MFPPush.subscribe(
             tags,
