@@ -26,6 +26,33 @@ var wlInitOptions = {
     // For initialization options please refer to IBM MobileFirst Platform Foundation Knowledge Center.
 };
 
+var options ={"categories":{
+                                       "Category_Name1":[
+                                     {
+                                       "buttonLabel":"Accept",
+                                       "buttonName":"Accept",
+                                       "iconName":"IconName_1"
+                                     },
+                                     {
+                                       "buttonLabel":"Reject",
+                                       "buttonName":"Reject",
+                                       "iconName":"IconName_2"
+                                     }
+                                   ],
+                                   "Category_Name2":[
+                                    {
+                                        "buttonLabel":"Ok",
+                                        "buttonName":"Ok",
+                                        "iconName":"IconName_3"
+                                    },
+                                    {
+                                        "buttonLabel":"Cancle",
+                                        "buttonName":"Cancle",
+                                        "iconName":"IconName_4"
+                                    }
+                                    ]}
+                               };
+
 // Default tags if "Get Tags" is not clicked first
 var tags = ['sample-tag1','sample-tag2'];
 
@@ -34,13 +61,15 @@ function wlCommonInit(){
     var userLoginChallengeHandler = UserLoginChallengeHandler();
     //MFP APIs should only be called within wlCommonInit() or after it has been called, to ensure that the APIs have loaded properly
 
+
+//Pass options while initialize
     MFPPush.initialize(
        function(successResponse) {
         WL.Logger.debug("Successfully intialized");
         MFPPush.registerNotificationsCallback(notificationReceived);
     }, function(failureResponse) {
         navigator.notification.alert("Failed to initialize");
-    });
+    },options);
 
     //add event listeners for click on buttons
     document.getElementById("isPushSupported").addEventListener("click", isPushSupported);
@@ -164,6 +193,10 @@ function unregisterDevice() {
 
 var notificationReceived = function(message) {
     navigator.notification.alert(JSON.stringify(message));
+    //Get the action from category button
+    var actionName = message["actionName"];
+
+    navigator.notification.alert(actionName);
 };
 
 function enableButtons() {
